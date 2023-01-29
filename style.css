@@ -20,5 +20,21 @@ body {
     box-sizing: border-box;
     border: 1px solid black;
     text-align: right;
-    grid-column-end: span 5;
+    grid-column-end: span 4;
+}
+
+.calc-button.seven {
+    grid-column-start: 1;
+}
+
+.calc-button.divide {
+    grid-column-start: 4;
+}
+
+.calc-button.zero {
+    grid-column-start: 2;
+}
+
+.calc-button.equals {
+    grid-column-start: 4;
 }
