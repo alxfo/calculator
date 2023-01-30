@@ -16,46 +16,57 @@ function addToDisplay(num) {
     displayCurrent.textContent = displayValue;
 }
 
+// this needs to empty all stored values
 function clearDisplay() {
     displayValue = '';
     displayCurrent.textContent = displayValue;
 }
 
+function addToStoredDisplay() {
+    combined = []
+    for (i = 0; i < numbers.length; i++) {
+        combined.push(numbers[i])
+        combined.push(displayOperators[i])
+    }
+    displayStored.textContent = combined.join(' ');
+}
+
 function addButton() {
     numbers.push(parseInt(displayValue));
     operators.push(add);
-    displayStored.textContent = numbers.join(''); // this needs to zip numbers and operators together with .map
+    displayOperators.push('+');
+    addToStoredDisplay();
     clearDisplay();
 }
 
 function divideButton() {
     numbers.push(parseInt(displayValue));
     operators.push(divide);
+    displayOperators.push('/');
+    addToStoredDisplay();
     clearDisplay();
 }
 
 function multiplyButton() {
     numbers.push(parseInt(displayValue));
     operators.push(multiply);
+    displayOperators.push('x');
+    addToStoredDisplay();
     clearDisplay();
 }
 
 function subtractButton() {
     numbers.push(parseInt(displayValue));
     operators.push(subtract);
+    displayOperators.push('-');
+    addToStoredDisplay();
     clearDisplay();
 }
 
-// function selectOperator() {
-//     numbers.push(parseInt(displayValue));
-//     currentOperator = this;
-//     clearDisplay();
-// }
-
-// change calculate to a loop to go through all stored values and operands when equals is pressed
-
 function calculate() {
     numbers.push(parseInt(displayValue));
+    addToStoredDisplay();
+    displayStored.textContent += ' =';
     while (operators.length) {
         displayValue = `${operators[0](numbers[0], numbers[1])}`;
         numbers.splice(0, 2);
@@ -65,6 +76,7 @@ function calculate() {
     displayCurrent.textContent = displayValue;
     numbers = [];
     operators = [];
+    displayOperators = [];
     calculated = true;
 }
 
@@ -82,6 +94,7 @@ let calculated = false;
 let displayValue = '';
 let numbers = [];
 let operators = [];
+let displayOperators = [];
 
 for (let i = 0; i < digitBtns.length; i++) {
     array = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0]
