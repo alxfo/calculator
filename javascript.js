@@ -8,6 +8,10 @@ function operate(operation, a, b) {
 };
 
 function addToDisplay(num) {
+    if (calculated) {
+        clearDisplay()
+        calculated = false
+    }
     displayValue += num
     displayCurrent.textContent = displayValue;
 }
@@ -52,11 +56,16 @@ function subtractButton() {
 
 function calculate() {
     numbers.push(parseInt(displayValue));
-    displayValue = `${operators[0](numbers[0], numbers[1])}`;
-    numbers.splice(0, 2);
-    operators.splice(0,1);
-    numbers.unshift(parseInt(displayValue));
+    while (operators.length) {
+        displayValue = `${operators[0](numbers[0], numbers[1])}`;
+        numbers.splice(0, 2);
+        operators.splice(0,1);
+        numbers.unshift(parseInt(displayValue));
+    }
     displayCurrent.textContent = displayValue;
+    numbers = [];
+    operators = [];
+    calculated = true;
 }
 
 const displayCurrent = document.querySelector('#current-value');
@@ -69,6 +78,7 @@ const addBtn = document.querySelector('.add')
 const equalsBtn = document.querySelector('.equals')
 const digitBtns = Array.from(document.querySelectorAll('.digit'));
 
+let calculated = false;
 let displayValue = '';
 let numbers = [];
 let operators = [];
