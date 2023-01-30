@@ -54,6 +54,7 @@ function calculate() {
     displayValue = `${operators[0](numbers[0], numbers[1])}`;
     numbers.splice(0, 2);
     operators.splice(0,1);
+    numbers.unshift(parseInt(displayValue));
     display.textContent = displayValue;
 }
 
