@@ -12,6 +12,7 @@ body {
     width: 400px;
     height: 600px;
     box-sizing: border-box;
+    border-radius: 5px;
     border: 1px solid black;
     margin-top: 100px;
     padding: 5px;
@@ -19,17 +20,18 @@ body {
 
 #calc-display {
     box-sizing: border-box;
+    border-radius: 5px;
     border: 1px solid black;
     text-align: right;
     grid-column-end: span 4;
     padding: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 #current-value {
-    font-size: 30px;
+    font-size: 42px;
 }
 
 .calc-button.seven {
