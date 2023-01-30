@@ -9,17 +9,18 @@ function operate(operation, a, b) {
 
 function addToDisplay(num) {
     displayValue += num
-    display.textContent = displayValue;
+    displayCurrent.textContent = displayValue;
 }
 
 function clearDisplay() {
     displayValue = '';
-    display.textContent = displayValue;
+    displayCurrent.textContent = displayValue;
 }
 
 function addButton() {
     numbers.push(parseInt(displayValue));
     operators.push(add);
+    displayStored.textContent = numbers.join(''); // this needs to zip numbers and operators together with .map
     clearDisplay();
 }
 
@@ -55,10 +56,11 @@ function calculate() {
     numbers.splice(0, 2);
     operators.splice(0,1);
     numbers.unshift(parseInt(displayValue));
-    display.textContent = displayValue;
+    displayCurrent.textContent = displayValue;
 }
 
-const display = document.querySelector('#calc-display');
+const displayCurrent = document.querySelector('#current-value');
+const displayStored = document.querySelector('#stored-values');
 const clearBtn = document.querySelector('.clear')
 const divideBtn = document.querySelector('.divide')
 const multiplyBtn = document.querySelector('.multiply')
