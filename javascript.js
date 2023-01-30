@@ -17,20 +17,44 @@ function clearDisplay() {
     display.textContent = displayValue;
 }
 
-function selectOperand() {
+function addButton() {
     numbers.push(parseInt(displayValue));
-    currentOperand = this;
+    operators.push(add);
     clearDisplay();
 }
+
+function divideButton() {
+    numbers.push(parseInt(displayValue));
+    operators.push(divide);
+    clearDisplay();
+}
+
+function multiplyButton() {
+    numbers.push(parseInt(displayValue));
+    operators.push(multiply);
+    clearDisplay();
+}
+
+function subtractButton() {
+    numbers.push(parseInt(displayValue));
+    operators.push(subtract);
+    clearDisplay();
+}
+
+// function selectOperator() {
+//     numbers.push(parseInt(displayValue));
+//     currentOperator = this;
+//     clearDisplay();
+// }
 
 // change calculate to a loop to go through all stored values and operands when equals is pressed
 
 function calculate() {
     numbers.push(parseInt(displayValue));
-    displayValue = `${currentOperand(numbers[0], numbers[1])}`;
+    displayValue = `${operators[0](numbers[0], numbers[1])}`;
     numbers.splice(0, 2);
+    operators.splice(0,1);
     display.textContent = displayValue;
-    totalValue = 0;
 }
 
 const display = document.querySelector('#calc-display');
@@ -42,10 +66,9 @@ const addBtn = document.querySelector('.add')
 const equalsBtn = document.querySelector('.equals')
 const digitBtns = Array.from(document.querySelectorAll('.digit'));
 
-let totalValue = 0;
 let displayValue = '';
 let numbers = [];
-let currentOperand = 0; // use an array to store the operands
+let operators = [];
 
 for (let i = 0; i < digitBtns.length; i++) {
     array = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0]
@@ -53,9 +76,9 @@ for (let i = 0; i < digitBtns.length; i++) {
 }
 
 clearBtn.addEventListener('click', clearDisplay)
-divideBtn.addEventListener('click', selectOperand.bind(divide))
-multiplyBtn.addEventListener('click', selectOperand.bind(multiply))
-subtractBtn.addEventListener('click', selectOperand.bind(subtract))
-addBtn.addEventListener('click', selectOperand.bind(add))
+divideBtn.addEventListener('click', divideButton)
+multiplyBtn.addEventListener('click', multiplyButton)
+subtractBtn.addEventListener('click', subtractButton)
+addBtn.addEventListener('click', addButton)
 equalsBtn.addEventListener('click', calculate)
 
