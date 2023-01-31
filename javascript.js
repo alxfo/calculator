@@ -17,6 +17,15 @@ function addToDisplay(num) {
 }
 
 // this needs to empty all stored values
+
+function resetCalculator() {
+    operators = [];
+    numbers = [];
+    displayOperators = [];
+    displayStored.textContent = '';
+    clearDisplay();
+}
+
 function clearDisplay() {
     displayValue = '';
     displayCurrent.textContent = displayValue;
@@ -101,7 +110,7 @@ for (let i = 0; i < digitBtns.length; i++) {
     digitBtns[i].addEventListener('click', () => addToDisplay(array[i]))
 }
 
-clearBtn.addEventListener('click', clearDisplay)
+clearBtn.addEventListener('click', resetCalculator)
 divideBtn.addEventListener('click', divideButton)
 multiplyBtn.addEventListener('click', multiplyButton)
 subtractBtn.addEventListener('click', subtractButton)
