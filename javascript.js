@@ -16,6 +16,14 @@ function addToDisplay(num) {
     displayCurrent.textContent = displayValue;
 }
 
+function decimalButton() {
+    if (decimal == false) {
+        decimal = true
+        displayValue += '.'
+        displayCurrent.textContent = displayValue;
+    }
+}
+
 function removeFromDisplay() {
     displayValue = displayValue.slice(0, -1);
     displayCurrent.textContent = displayValue;
@@ -41,10 +49,11 @@ function addToStoredDisplay() {
         combined.push(displayOperators[i])
     }
     displayStored.textContent = combined.join(' ');
+    decimal = false
 }
 
 function addButton() {
-    numbers.push(parseInt(displayValue));
+    numbers.push(parseFloat(displayValue));
     operators.push(add);
     displayOperators.push('+');
     addToStoredDisplay();
@@ -52,7 +61,7 @@ function addButton() {
 }
 
 function divideButton() {
-    numbers.push(parseInt(displayValue));
+    numbers.push(parseFloat(displayValue));
     operators.push(divide);
     displayOperators.push('/');
     addToStoredDisplay();
@@ -60,7 +69,7 @@ function divideButton() {
 }
 
 function multiplyButton() {
-    numbers.push(parseInt(displayValue));
+    numbers.push(parseFloat(displayValue));
     operators.push(multiply);
     displayOperators.push('x');
     addToStoredDisplay();
@@ -68,7 +77,7 @@ function multiplyButton() {
 }
 
 function subtractButton() {
-    numbers.push(parseInt(displayValue));
+    numbers.push(parseFloat(displayValue));
     operators.push(subtract);
     displayOperators.push('-');
     addToStoredDisplay();
@@ -76,20 +85,21 @@ function subtractButton() {
 }
 
 function calculate() {
-    numbers.push(parseInt(displayValue));
+    numbers.push(parseFloat(displayValue));
     addToStoredDisplay();
     displayStored.textContent += ' =';
     while (operators.length) {
         displayValue = `${operators[0](numbers[0], numbers[1])}`;
         numbers.splice(0, 2);
         operators.splice(0,1);
-        numbers.unshift(parseInt(displayValue));
+        numbers.unshift(parseFloat(displayValue));
     }
     displayCurrent.textContent = displayValue;
     numbers = [];
     operators = [];
     displayOperators = [];
     calculated = true;
+    decimal = false;
 }
 
 const displayCurrent = document.querySelector('#current-value');
@@ -100,9 +110,11 @@ const divideBtn = document.querySelector('.divide')
 const multiplyBtn = document.querySelector('.multiply')
 const subtractBtn = document.querySelector('.subtract')
 const addBtn = document.querySelector('.add')
+const decimalBtn = document.querySelector('.decimal')
 const equalsBtn = document.querySelector('.equals')
 const digitBtns = Array.from(document.querySelectorAll('.digit'));
 
+let decimal = false;
 let calculated = false;
 let displayValue = '';
 let numbers = [];
@@ -120,5 +132,6 @@ divideBtn.addEventListener('click', divideButton)
 multiplyBtn.addEventListener('click', multiplyButton)
 subtractBtn.addEventListener('click', subtractButton)
 addBtn.addEventListener('click', addButton)
+decimalBtn.addEventListener('click', decimalButton)
 equalsBtn.addEventListener('click', calculate)
 
