@@ -17,8 +17,7 @@ function addToDisplay(num) {
 }
 
 function decimalButton() {
-    if (decimal == false) {
-        decimal = true
+    if (displayValue.includes('.') == false) {
         displayValue += '.'
         displayCurrent.textContent = displayValue;
     }
@@ -49,7 +48,6 @@ function addToStoredDisplay() {
         combined.push(displayOperators[i])
     }
     displayStored.textContent = combined.join(' ');
-    decimal = false
 }
 
 function addButton() {
@@ -99,7 +97,6 @@ function calculate() {
     operators = [];
     displayOperators = [];
     calculated = true;
-    decimal = false;
 }
 
 const displayCurrent = document.querySelector('#current-value');
@@ -114,7 +111,6 @@ const decimalBtn = document.querySelector('.decimal')
 const equalsBtn = document.querySelector('.equals')
 const digitBtns = Array.from(document.querySelectorAll('.digit'));
 
-let decimal = false;
 let calculated = false;
 let displayValue = '';
 let numbers = [];
