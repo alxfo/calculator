@@ -16,7 +16,10 @@ function addToDisplay(num) {
     displayCurrent.textContent = displayValue;
 }
 
-// this needs to empty all stored values
+function removeFromDisplay() {
+    displayValue = displayValue.slice(0, -1);
+    displayCurrent.textContent = displayValue;
+}
 
 function resetCalculator() {
     operators = [];
@@ -92,6 +95,7 @@ function calculate() {
 const displayCurrent = document.querySelector('#current-value');
 const displayStored = document.querySelector('#stored-values');
 const clearBtn = document.querySelector('.clear')
+const backBtn = document.querySelector('.backspace')
 const divideBtn = document.querySelector('.divide')
 const multiplyBtn = document.querySelector('.multiply')
 const subtractBtn = document.querySelector('.subtract')
@@ -111,6 +115,7 @@ for (let i = 0; i < digitBtns.length; i++) {
 }
 
 clearBtn.addEventListener('click', resetCalculator)
+backBtn.addEventListener('click', removeFromDisplay)
 divideBtn.addEventListener('click', divideButton)
 multiplyBtn.addEventListener('click', multiplyButton)
 subtractBtn.addEventListener('click', subtractButton)
