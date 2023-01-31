@@ -52,6 +52,14 @@ body {
     border-radius: 1em;
 }
 
+#calc-buttons button:hover {
+    filter: brightness(120%);
+}
+
+#calc-buttons button:active {
+    filter: brightness(90%);
+}
+
 #calc-buttons .digit {
     background-color: #7EA3CC;
 }
