@@ -57,7 +57,7 @@ body {
 }
 
 #calc-buttons button:active {
-    filter: brightness(90%);
+    filter: brightness(80%);
 }
 
 #calc-buttons .digit {

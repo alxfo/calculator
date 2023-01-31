@@ -132,7 +132,7 @@ function calculate() {
         operators.splice(0,1);
         numbers.unshift(parseFloat(displayValue));
     };
-    displayCurrent.textContent = displayValue;
+    displayCurrent.textContent = (Math.round(displayValue * 100) / 100);
     numbers = [];
     operators = [];
     displayOperators = [];
