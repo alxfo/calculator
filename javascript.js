@@ -52,6 +52,9 @@ function addToDisplay(num) {
         clearDisplay();
         calculated = false;
     };
+    if (displayValue == '0') {
+        displayValue = '';
+    };
     displayValue += num;
     displayCurrent.textContent = displayValue;
 };
@@ -77,7 +80,7 @@ function resetCalculator() {
 };
 
 function clearDisplay() {
-    displayValue = '';
+    displayValue = '0';
     displayCurrent.textContent = displayValue;
 };
 
